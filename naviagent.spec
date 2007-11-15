@@ -1,18 +1,18 @@
-Summary:	Navisphere agent
+Summary:	Navisphere Agent and CLI
 Name:		naviagentcli
 Version:	6.26.0.2.24
-Release:	0.1
-License:	?
-Group:		Applications
+Release:	0.2
+License:	EMC Corp
+Group:		Applications/System
 Source0:	NAVIAGNTCLI_LINUX_V26.zip
 # NoSource0-md5:	d94cec5596ee7aec1635de9140b27a89
-NoSource:		0
+NoSource:	0
 URL:		https://powerlink.emc.com/
 ExclusiveArch:	%{ix86}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-Navisphere agent.
+Navisphere Agent and CLI
 
 %prep
 %setup -qc
