@@ -1,4 +1,5 @@
 Summary:	Navisphere Agent and CLI
+Summary(pl.UTF-8):	Agent i interfejs linii poleceń do Navisphere
 Name:		naviagentcli
 Version:	6.26.0.2.24
 Release:	0.3
@@ -16,7 +17,10 @@ ExclusiveArch:	%{ix86}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-Navisphere Agent and CLI
+Navisphere Agent and CLI.
+
+%description -l pl.UTF-8
+Agent i interfejs linii poleceń do Navisphere.
 
 %prep
 %setup -qc
