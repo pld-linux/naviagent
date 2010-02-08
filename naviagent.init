@@ -31,7 +31,7 @@ start() {
 	# Check if the service is already running?
 	if [ ! -f /var/lock/subsys/naviagent ]; then
 		msg_starting "Navisphere Agent"
-		daemon naviagent
+		daemon /usr/sbin/naviagent -p /var/run/naviagent -r /var/log/naviagent
 		RETVAL=$?
 		[ $RETVAL -eq 0 ] && touch /var/lock/subsys/naviagent
 	else
@@ -43,7 +43,7 @@ stop() {
 	if [ -f /var/lock/subsys/naviagent ]; then
 		# Stop daemons.
 		msg_stopping "Navisphere Agent"
-		killproc naviagent
+		killproc --pidfile /var/run/naviagent/agent.pid naviagent
 		rm -f /var/lock/subsys/naviagent
 	else
 		msg_not_running "Navisphere Agent"
@@ -64,7 +64,7 @@ case "$1" in
 	start
 	;;
   status)
-	status naviagent
+	status --pidfile /var/run/naviagent/agent.pid naviagent
 	RETVAL=$?
 	;;
   *)
