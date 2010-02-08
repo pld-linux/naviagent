@@ -2,7 +2,7 @@ Summary:	Navisphere Agent and CLI
 Summary(pl.UTF-8):	Agent i interfejs linii poleceń do Navisphere
 Name:		naviagent
 Version:	6.26.0.2.24
-Release:	0.5
+Release:	0.6
 License:	EMC Corp
 Group:		Applications/System
 %if 0
@@ -16,7 +16,7 @@ BuildRequires:	rpmbuild(macros) >= 1.268
 Requires(post,preun):	/sbin/chkconfig
 # for 32bit libgcc
 Requires:	libgcc_s.so.1
-Requires:	rc-scripts
+Requires:	rc-scripts >= 0.4.1.26
 Obsoletes:	naviagentcli
 ExclusiveArch:	%{ix86}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
