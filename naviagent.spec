@@ -2,7 +2,7 @@ Summary:	Navisphere Agent and CLI
 Summary(pl.UTF-8):	Agent i interfejs linii poleceń do Navisphere
 Name:		naviagent
 Version:	6.26.0.2.24
-Release:	0.6
+Release:	0.7
 License:	EMC Corp
 Group:		Applications/System
 %if 0
@@ -25,10 +25,17 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		_enable_debug_packages	0
 
 %description
-Navisphere Agent and CLI.
+Navisphere Agent.
 
 %description -l pl.UTF-8
 Agent i interfejs linii poleceń do Navisphere.
+
+%package -n navicli
+Summary:	Navisphere CLI
+Group:		Applications/System
+
+%description -n navicli
+Navisphere CLI.
 
 %prep
 %setup -qcT
@@ -73,7 +80,9 @@ fi
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/Navisphere/agent.config
 %attr(754,root,root) /etc/rc.d/init.d/naviagent
 %attr(755,root,root) %{_sbindir}/naviagent
-%attr(755,root,root) %{_sbindir}/navicli
-%attr(755,root,root) %{_sbindir}/naviseccli
 %dir %attr(750,root,root) /var/run/naviagent
 %dir %attr(750,root,root) /var/log/naviagent
+
+%files -n navicli
+%attr(755,root,root) %{_sbindir}/navicli
+%attr(755,root,root) %{_sbindir}/naviseccli
