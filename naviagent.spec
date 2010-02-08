@@ -20,6 +20,9 @@ Requires:	rc-scripts
 ExclusiveArch:	%{ix86}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
+# avoid empty package
+%define		_enable_debug_packages	0
+
 %description
 Navisphere Agent and CLI.
 
