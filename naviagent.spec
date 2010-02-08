@@ -1,8 +1,8 @@
 Summary:	Navisphere Agent and CLI
 Summary(pl.UTF-8):	Agent i interfejs linii poleceń do Navisphere
-Name:		naviagentcli
+Name:		naviagent
 Version:	6.26.0.2.24
-Release:	0.4
+Release:	0.5
 License:	EMC Corp
 Group:		Applications/System
 %if 0
@@ -10,13 +10,14 @@ Source0:	NAVIAGNTCLI_LINUX_V26.zip
 # NoSource0-md5:	d94cec5596ee7aec1635de9140b27a89
 NoSource:	0
 %endif
-Source1:	naviagent.init
+Source1:	%{name}.init
 URL:		https://powerlink.emc.com/
 BuildRequires:	rpmbuild(macros) >= 1.268
 Requires(post,preun):	/sbin/chkconfig
 # for 32bit libgcc
 Requires:	libgcc_s.so.1
 Requires:	rc-scripts
+Obsoletes:	naviagentcli
 ExclusiveArch:	%{ix86}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -42,12 +43,12 @@ mv usr/sbin bin
 mv etc/Navisphere/* etc
 %else
 mv opt/Navisphere/bin .
-mv opt/Navisphere/etc .
+mv opt/Navisphere/''etc .
 %endif
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_sbindir},/etc/rc.d/init.d,/etc/Navisphere}
+install -d $RPM_BUILD_ROOT{%{_sbindir},/etc/rc.d/init.d,/etc/Navisphere,/var/{log,run}/naviagent}
 install -p bin/{naviagent,navicli,naviseccli} $RPM_BUILD_ROOT%{_sbindir}
 install -p %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/naviagent
 cp -a etc/SupportedFlareRevisions etc/agent.config $RPM_BUILD_ROOT%{_sysconfdir}/Navisphere
@@ -74,3 +75,5 @@ fi
 %attr(755,root,root) %{_sbindir}/naviagent
 %attr(755,root,root) %{_sbindir}/navicli
 %attr(755,root,root) %{_sbindir}/naviseccli
+%dir %attr(750,root,root) /var/run/naviagent
+%dir %attr(750,root,root) /var/log/naviagent
