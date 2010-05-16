@@ -13,6 +13,7 @@ NoSource:	0
 Source1:	%{name}.init
 URL:		https://powerlink.emc.com/
 BuildRequires:	rpmbuild(macros) >= 1.268
+BuildRequires:	unzip
 Requires(post,preun):	/sbin/chkconfig
 # for 32bit libgcc
 Requires:	libgcc_s.so.1
